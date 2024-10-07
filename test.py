@@ -1,19 +1,27 @@
-from symphony.client import SymphonyClient
 import logging
+import os
+
+from pysymphony import SymphonyClient
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
 
-client = SymphonyClient(api_key="symphony-2DgJeCiFP7pTxLKLISuZb70xuYRZOAP96fXODNe_bElTIRRhsQ0kLx9BWNEOLlUu_wshv6ROrQ")
+client = SymphonyClient(
+    api_key=os.getenv("SYMPHONY_API_KEY"),
+    base_url="http://127.0.0.1:8000/inference"
+)
 
-task = "Given a country name, return the capital city"
+task = "A workflow to find an artist's background and their works based on an input artist."
 parameters = {
-    "max_steps": 1
+    "max_steps": 3
 }
 tools = ["pplx_online"]
 
 workflow = client.generate_workflow(task, parameters, tools)
 print(workflow)
 
-run = workflow.run_workflow("Japan")
+run = workflow.run_workflow("Michealangelo")
 print(run)
 print(run.output)
