@@ -19,7 +19,7 @@ class Run:
         workflow_id: str, 
         input: str, 
         session: requests.Session = None,
-        base_url: str = "http://127.0.0.1:8000/inference",
+        base_url: str = "https://inference.composition-labs.com/inference",
     ):
         self.id = id
         self.workflow_id = workflow_id
@@ -74,7 +74,7 @@ class Workflow:
         parameters: Dict[str, Any] = {},
         session: requests.Session = None,
         tools: List[str] = [],
-        base_url: str = "http://127.0.0.1:8000/inference",
+        base_url: str = "https://inference.composition-labs.com/inference",
     ):
         self.task_description = task_description
         self.id = id
@@ -155,7 +155,7 @@ class SymphonyClient:
     def __init__(
         self,
         api_key: str,
-        base_url: str = "http://127.0.0.1:8000/inference",
+        base_url: str = "https://inference.composition-labs.com/inference",
         session: requests.Session = None,
     ):
         """
