@@ -15,7 +15,6 @@ setup(
         'requests==2.32.3',
         'urllib3==2.2.3',
     ],
-    packages=find_packages(),
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
