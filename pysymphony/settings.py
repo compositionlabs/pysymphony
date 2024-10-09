@@ -47,7 +47,7 @@ class Settings:
                     unique_id=tool.id,
                     name=tool.name,
                     description=tool.description,
-                    schema=tool.schema,
+                    schema=tool.tool_schema,
                 )
         return self._tools
     
@@ -68,7 +68,7 @@ class Settings:
             unique_id=tool.id,
             name=tool.name,
             description=tool.description,
-            schema=tool.schema,
+            schema=tool.tool_schema,
         )
 
     def add_client_tool(

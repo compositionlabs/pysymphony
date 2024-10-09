@@ -64,7 +64,7 @@ class LocalTool(BaseModel):
     id: Optional[str] = Field(default_factory=lambda: None)
     name: Optional[str] = Field(default_factory=lambda: None)
     description: Optional[str] = Field(default_factory=lambda: None)
-    schema: Optional[dict] = Field(default_factory=lambda: None)
+    tool_schema: Optional[dict] = Field(default_factory=lambda: None)  # Renamed from 'schema'
     async_fn: Optional[Callable[..., Awaitable[Any]]] = Field(default_factory=lambda: None)
 
     @model_validator(mode='before')
@@ -80,8 +80,8 @@ class LocalTool(BaseModel):
         if values.get('name') is None:
             values['name'] = values['id']
 
-        if values.get('schema') is None:
-            values['schema'] = create_schema_from_function(values['name'], fn)
+        if values.get('tool_schema') is None:  # Updated to match the new field name
+            values['tool_schema'] = create_schema_from_function(values['name'], fn)
 
         if values.get('description') is None:
             values['description'] = get_desc_from_doc_str(fn)
