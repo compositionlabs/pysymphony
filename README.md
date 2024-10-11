@@ -16,4 +16,4 @@ export SYMPHONY_API_KEY=<your_api_key>
 Refer the [example.ipynb](./example.ipynb) for more details.
 
 Open in Google Colab:
-![Open In Colab](https://colab.research.google.com/github/compositionlabs/pysymphony/blob/main/example.ipynb)
+[Open In Colab](https://colab.research.google.com/github/compositionlabs/pysymphony/blob/main/example.ipynb)
