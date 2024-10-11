@@ -5,6 +5,7 @@ import requests
 
 from pysymphony.runs import Run
 from pysymphony.settings import settings
+from pysymphony.utils import get_mermaid_image_url
 
 
 def resolve_parameters(parameters: Dict[str, Any]):
@@ -135,3 +136,32 @@ class Workflow:
         Generate a workflow.
         """
         raise NotImplementedError("`generate_workflow` is not implemented yet")
+    
+    def get_mermaid_image_url(self):
+        """
+        Get the mermaid image url.
+        """
+        return get_mermaid_image_url(self.get_mermaid_graph())
+    
+    def get_mermaid_graph(self):
+        """
+        Get the mermaid graph.
+        """
+        mm_str = f"graph TD\n"
+        mm_str += "INPUT\n"
+        mm_str += "OUTPUT\n"
+        for node in self.nodes:
+            mm_str += f"Step_{str(node['step_index'])}\n"
+        for node in self.nodes:
+            if len(node["tools"]) > 0:
+                mm_str += f"Step_{str(node['step_index'])} -.-> tools_{str(node['step_index'])}[Step {str(node['step_index'])} Tools]\n"
+                mm_str += f"tools_{str(node['step_index'])} --> {str(node['step_index'])}\n"
+            dependencies = node["dependencies"]
+            for dependency in dependencies:
+                mm_str += f"Step_{str(dependency)} --> Step_{str(node['step_index'])}\n"
+            if len(dependencies) == 0:
+                mm_str += f"INPUT --> Step_{str(node['step_index'])}\n"
+        for node in self.nodes:
+            if node["step_index"] == len(self.nodes):
+                mm_str += f"Step_{str(node['step_index'])} --> OUTPUT\n"
+        return mm_str

@@ -122,7 +122,8 @@ class Run:
         Handle tool calls.
         """
         for tool_call in self.tool_calls.calls.values():
-            self.handle_tool_call(tool_call)
+            if tool_call.output is None:
+                self.handle_tool_call(tool_call)
 
     async def ahandle_tool_calls(self):
         """
