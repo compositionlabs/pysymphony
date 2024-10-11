@@ -14,3 +14,6 @@ export SYMPHONY_API_KEY=<your_api_key>
 
 3. Start using the package!
 Refer the [example.ipynb](./example.ipynb) for more details.
+
+Open in Google Colab:
+![Open In Colab](https://colab.research.google.com/github/compositionlabs/pysymphony/blob/main/example.ipynb)
