@@ -1,5 +1,7 @@
 # pysymphony
 
+TRY IT OUT ON GOOGLE COLAB: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/compositionlabs/pysymphony/blob/main/example.ipynb)
+
 Installation Instructions:
 
 1. Install the package:
