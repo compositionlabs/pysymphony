@@ -155,7 +155,7 @@ class Workflow:
         for node in self.nodes:
             if len(node["tools"]) > 0:
                 mm_str += f"Step_{str(node['step_index'])} -.-> tools_{str(node['step_index'])}[Step {str(node['step_index'])} Tools]\n"
-                mm_str += f"tools_{str(node['step_index'])} --> {str(node['step_index'])}\n"
+                mm_str += f"tools_{str(node['step_index'])} --> Step_{str(node['step_index'])}\n"
             dependencies = node["dependencies"]
             for dependency in dependencies:
                 mm_str += f"Step_{str(dependency)} --> Step_{str(node['step_index'])}\n"
