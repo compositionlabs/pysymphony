@@ -147,14 +147,22 @@ class Workflow:
         """
         Get the mermaid graph.
         """
-        mm_str = f"graph TD\n"
-        mm_str += "INPUT\n"
-        mm_str += "OUTPUT\n"
+        mm_str = f"graph TD\nclassDef bg-rounded fill:#f9f,stroke:#333,stroke-width:2px,rx:10px,ry:10px;\n"
+        mm_str += f"INPUT[{self.nodes[0]['input']}]\n"
+        mm_str += "OUTPUT[Output]\n"
         for node in self.nodes:
-            mm_str += f"Step_{str(node['step_index'])}\n"
+            content = node["job"]
+            if len(content) > 100:
+                content = content[:100] + "..."
+            # for tool in node["tools"]:
+            #     content += f"\n<br>**{tool['name']}**"
+            mm_str += f"Step_{str(node['step_index'])}[{content}]\n"
         for node in self.nodes:
             if len(node["tools"]) > 0:
-                mm_str += f"Step_{str(node['step_index'])} -.-> tools_{str(node['step_index'])}[Step {str(node['step_index'])} Tools]\n"
+                tool_content = ""
+                for tool in node["tools"]:
+                    tool_content += f"\n<br><span class='bg-rounded'>**{tool['name']}**</span>"
+                mm_str += f"Step_{str(node['step_index'])} -.-> tools_{str(node['step_index'])}[{tool_content}]\n"
                 mm_str += f"tools_{str(node['step_index'])} --> Step_{str(node['step_index'])}\n"
             dependencies = node["dependencies"]
             for dependency in dependencies:

@@ -4,6 +4,7 @@ from typing import (Any, Awaitable, Callable, List, Optional, Tuple, Type,
                     Union, cast)
 
 from pydantic import BaseModel, Field, model_validator, create_model
+from pydantic.fields import FieldInfo
 
 
 def create_schema_from_function(
@@ -26,7 +27,7 @@ def create_schema_from_function(
         if param_default is params[param_name].empty:
             # Required field
             fields[param_name] = (param_type, Field())
-        elif isinstance(param_default, Field):
+        elif isinstance(param_default, FieldInfo):
             # Field with pydantic.Field as default value
             fields[param_name] = (param_type, param_default)
         else:
