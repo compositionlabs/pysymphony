@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pysymphony',
-    version='0.2.2',
+    version='0.2.4',
     description='A Python client for Symphony',
     author='Chinmay Shrivastava',
     author_email='cshrivastava99@gmail.com',
