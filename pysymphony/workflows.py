@@ -148,7 +148,7 @@ class Workflow:
         Get the mermaid graph.
         """
         mm_str = f"graph TD\nclassDef bg-rounded fill:#f9f,stroke:#333,stroke-width:2px,rx:10px,ry:10px;\n"
-        mm_str += f"INPUT[{self.nodes[0]['input']}]\n"
+        mm_str += f"INPUT\n"
         mm_str += "OUTPUT[Output]\n"
         for node in self.nodes:
             content = node["job"]

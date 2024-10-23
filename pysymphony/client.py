@@ -98,7 +98,6 @@ class SymphonyClient:
         """
         workflow = Workflow(task_description=task_description, parameters=parameters, tools=tools, session=self.session, base_url=self.base_url)
         workflow.generate_workflow()
-        self.workflows.append(workflow)
         return workflow
     
     async def agenerate_workflow(
